@@ -1,0 +1,27 @@
+<!doctype html>
+<html>
+  <head>
+    <link rel="stylesheet" type="text/css" href="jspm_packages/github/twbs/bootstrap@3.3.4/css/bootstrap.min.css">
+    <link rel="stylesheet" type="text/css" href="styles/styles.css">
+    <link rel="shortcut icon" href="favicon.ico">
+  </head>
+  <body aurelia-app>
+    <div class="splash">
+      <div class="message">Aurelia Contacts</div>
+      <i class="fa fa-spinner fa-spin"></i>
+    </div>
+
+    <script src="jspm_packages/system.js"></script>
+    <script src="config.js"></script>
+    <script>
+      System.config({
+        "paths": {
+          "*": "dist/*.js"
+        }
+      });
+    </script>
+    <script>
+      System.import('aurelia-bootstrapper');
+    </script>
+  </body>
+</html>
