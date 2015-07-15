@@ -11,11 +11,11 @@ export class CourseList {
 		this.courses = [];
 	}
 
-	activate() {
+	attached() {
 		this.ea.subscribe(CourseSelected, msg => {
-			console.log("msg", msg);
 			this.select(msg.id);
 		});
+
 		this.ea.subscribe(CourseChanged, msg => {
 			let id = msg.course.id;
 			let found = this.courses.filter(x => x.id == id)[0] || {};

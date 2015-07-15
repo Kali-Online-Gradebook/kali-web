@@ -10,23 +10,25 @@ export class CourseDetail {
 		this.ea = ea;
 		this.router = router;
 
+		this.id = undefined;
 		this.course = {};
 		this._course = {};
 	}
 
 	activate (params, config, router) {
-		let id = parseInt(params.id, 10);
+		this.id = parseInt(params.id, 10);
+	}
 
+	attached () {}
 		this.api.getCourse(id)
 			.then((course) => {
-				this.course = deepCopy(course);
-				this._course = deepCopy(course);
+				if (!course) {
+					console.error("no course", id, course);
+				} else {
+					this.course = deepCopy(course);
+					this._course = deepCopy(course);
+				}
 			});
-
-		this.ea.subscribe(CourseChanged, msg => {
-			this.course = deepCopy(msg.course);
-			this._course = deepCopy(msg.course);
-		});
 
 		this.ea.publish(new CourseSelected(id));
 	}
@@ -62,11 +64,13 @@ export class CourseDetail {
 
 		this.api.saveCourse(this._course)
 			.then((course) => {
+				console.log("saved", id, course);
 				this.ea.publish(new CourseChanged(course));
 
 				if (!id) {
+					console.log("course.id", course.id);
 					this.ea.publish(new CourseSelected(course.id));
-					this.router.navigate('courses/' + course.id);
+					this.router.navigate(course.id);
 				}
 			});
 	}
@@ -76,15 +80,16 @@ export class CourseDetail {
 	}
 
 	average (scores) {
-		var points = scores
-			.filter(x => !isNaN(x))
-			.reduce((p, c) => p + c, 0);
-
 		var max = this._course.assignments
-			.map(assignment => assignment.maximum)
-			.reduce((p, c) => p + c);
+			.map(assignment => assignment.maximum);
 
-		return points / max;
+		var valid = scores.map(x => !isNaN(x)).length;
+
+		return scores.reduce((prev, score, index, array) => {
+			if (isNaN(score)) return prev;
+
+			return prev + (score / max[index] / valid);
+		}, 0);
 	}
 }
 
