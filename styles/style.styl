@@ -1,0 +1,154 @@
+@import "bootstrap/index"
+
+.splash {
+	text-align: center;
+	margin: 10% 0 0 0;
+    
+	.message {
+		font-size: 5em;
+		line-height: 1.5em;
+		-webkit-text-shadow: rgba(0, 0, 0, 0.5) 0 0 15px;
+		text-shadow: rgba(0, 0, 0, 0.5) 0 0 15px;
+	}
+
+	.fa-spinner {
+		text-align: center;
+		display: inline-block;
+		font-size: 5em;
+		margin-top: 50px;
+	}
+}
+
+.page-host {
+	height: calc(100% - 50px);
+	margin-top: 50px;
+}
+
+.courses {
+	.sidebar-list {
+		overflow-y: auto;
+		width: 200px;
+		position: absolute;
+		top: 50px;
+		left: 0;
+		bottom: 0;
+		border: 0;
+		padding: 0;
+		background: #eee;
+	}
+
+	router-view {
+		position: absolute;
+		top: 50px;
+		left: 200px;
+		bottom: 0;
+		right: 0;
+	}
+}
+
+.students {
+	router-view {
+		position: static;
+	}
+}
+
+.panel-container {
+	position: relative;
+	height: 100%;
+	overflow: auto;
+
+	.panel {
+		position: absolute;
+		top: 0;
+		left: 0;
+		bottom: 0;
+		right: 0;
+
+		.panel-heading {
+			position: fixed;
+			width: calc(100% - 200px);
+			text-align: right;
+			max-height: 55px;
+		}
+
+		.panel-footer {
+			position: fixed;
+			bottom: 0;
+			width: calc(100% - 200px);
+			text-align: right;
+			max-height: 55px;
+		}
+
+		.table {
+			margin-top: 55px;
+			margin-bottom: 110px;
+			text-align: right;
+		}
+
+		.studentname {
+			width: 120px;
+			text-align: left;
+		}
+
+		.assignment {
+			width: 100px;
+			min-width: 100px;
+		}
+		
+		.finalgrade {
+			width: 90px;
+			max-width: 90px;
+		}
+
+		.score {
+			font-size: 0.8em;
+			font-style: italic;
+		}
+
+		.percentage {
+			font-size: 1.3em;
+		}
+	}
+}
+
+section {
+	margin: 0 20px;
+}
+
+a:focus {
+	outline: none;
+}
+
+.navbar-nav li.loader {
+    margin: 12px 24px 0 6px;
+}
+
+.no-selection {
+	margin: 20px;
+}
+
+.button-bar {
+	position: absolute;
+	right: 0;
+	left: 0;
+	bottom: 0;
+	border-top: 1px solid #ddd;
+	padding: 10px;
+	background: white;
+  
+	> button {
+		float: right;
+	}
+}
+
+li.list-group-item {
+	list-style: none;
+  
+	> a {
+		text-decoration: none;
+	}
+
+	.active > a {
+		color: white;
+	}
+}

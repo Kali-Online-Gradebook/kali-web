@@ -1,11 +1,11 @@
-export class ContactUpdated {
-  constructor(contact){
-    this.contact = contact;
-  }
+export class CourseChanged {
+	constructor(course) {
+		this.course = course;
+	}
 }
 
-export class ContactViewed {
-  constructor(contact){
-    this.contact = contact;
-  }
+export class CourseSelected {
+	constructor(id) {
+		this.id = id;
+	}
 }

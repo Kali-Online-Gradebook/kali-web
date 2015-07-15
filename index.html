@@ -1,27 +1,31 @@
 <!doctype html>
 <html>
-  <head>
-    <link rel="stylesheet" type="text/css" href="jspm_packages/github/twbs/bootstrap@3.3.4/css/bootstrap.min.css">
-    <link rel="stylesheet" type="text/css" href="styles/styles.css">
-    <link rel="shortcut icon" href="favicon.ico">
-  </head>
-  <body aurelia-app>
-    <div class="splash">
-      <div class="message">Aurelia Contacts</div>
-      <i class="fa fa-spinner fa-spin"></i>
-    </div>
+	<head>
+		<link rel="stylesheet" type="text/css" href="jspm_packages/npm/font-awesome@4.3.0/css/font-awesome.min.css">
+		<link rel="stylesheet" type="text/css" href="css/style.css">
+		<link rel="stylesheet" type="text/css" href="css/cover.css">
+		<link rel="shortcut icon" href="favicon.ico">
+	</head>
+	<body aurelia-app>
+		<div class="splash">
+			<div class="message">Kali</div>
+			<span class="fa-stack fa-5x fa-lg">
+				<i class="fa fa-circle fa-stack-2x"></i>
+				<i class="fa fa-circle-o-notch fa-spin fa-inverse fa-stack-1x"></i>
+			</span>
+		</div>
 
-    <script src="jspm_packages/system.js"></script>
-    <script src="config.js"></script>
-    <script>
-      System.config({
-        "paths": {
-          "*": "dist/*.js"
-        }
-      });
-    </script>
-    <script>
-      System.import('aurelia-bootstrapper');
-    </script>
-  </body>
+		<script src="jspm_packages/system.js"></script>
+		<script src="config.js"></script>
+		<script>
+			System.config({
+				"paths": {
+					"*": "dist/*.js"
+				}
+			});
+		</script>
+		<script>
+			System.import('aurelia-bootstrapper');
+		</script>
+	</body>
 </html>

@@ -1,15 +1,15 @@
 System.config({
   "transpiler": "babel",
+  "paths": {
+    "*": "*.js",
+    "github:*": "jspm_packages/github/*.js",
+    "npm:*": "jspm_packages/npm/*.js"
+  },
   "babelOptions": {
     "optional": [
       "runtime",
       "es7.decorators"
     ]
-  },
-  "paths": {
-    "*": "*.js",
-    "github:*": "jspm_packages/github/*.js",
-    "npm:*": "jspm_packages/npm/*.js"
   }
 });
 

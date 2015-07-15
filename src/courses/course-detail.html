@@ -1,0 +1,93 @@
+<template>
+	<div class="container-fluid">
+		<div show.bind="course.id == null">
+			<div class="row">
+				<div class="col-xs-12">
+					<h2>New Course</h2>
+				</div>
+			</div>
+			<div class="row">
+				<form role="form" class="col-xs-12" submit.delegate="save()">
+					<div class="form-group">
+						<label for="title">Title</label>
+						<input id="title" class="form-control" type="text" value.bind="_course.title" />
+					</div>
+					<div class="form-group">
+						<label for="description">Description</label>
+						<input id="description" class="form-control" type="text" value.bind="_course.description" />
+					</div>
+					<button class="btn btn-default" type="submit">Add</button>
+				</form>
+			</div>
+		</div>
+	</div>
+	<div class="container-fluid sr-only" show.bind="course.id != null">
+		<div class="row">
+			<div class="col-xs-12">
+				<h2>${_course.title}</h2>
+				<p>${_course.description}</p>
+			</div>
+		</div>
+	</div>
+	<div class="panel-container" show.bind="course.id != null">
+		<div class="panel panel-default panel-full">
+			<div class="panel-heading">
+				<button class="btn btn-default" click.delegate="undo()">
+					<i class="fa fa-undo"></i>
+					<span>Undo</span>
+				</button>
+				<button class="btn btn-default" click.delegate="redo()">
+					<i class="fa fa-repeat"></i>
+					<span>Redo</span>
+				</button>
+				<button class="btn btn-default" click.delegate="addAssignment()">
+					<i class="fa fa-plus"></i>
+					<span>Add Assignment</span>
+				</button>
+				<button class="btn btn-default" click.delegate="addStudent()">
+					<i class="fa fa-user-plus"></i>
+					<span>Add Student</span>
+				</button>
+			</div>
+			<table class="table table-striped table-hover">
+				<thead>
+					<th></th>
+					<th class="assignment" repeat.for="assignment of _course.assignments">
+						<span class="rotate">${assignment.name}</span>
+					</th>
+					<th></th>
+					<th class="finalgrade">Final Grade</th>
+				</thead>
+				<tbody>
+				<tr repeat.for="student of _course.students">
+					<th class="studentname">${student.lastname}, ${student.firstname}</th>
+					<td class="assignment" repeat.for="assignment of $parent._course.assignments">
+						<span class="percentage">${($parent.student.scores[$index]/assignment.maximum) | percent}</span><br />
+						<span class="score">${$parent.student.scores[$index]}/${assignment.maximum}</span>
+					</td>
+					<td></td>
+					<td>
+						<span class="h2">${$parent.average(student.scores) | percent}</span>
+					</td>
+				</tr>
+				</tbody>
+				<tfoot>
+					<th>Class Average</th>
+					<td class="assignment" repeat.for="assignment of $parent._course.assignments">
+						<span class="percentage">${($parent.student.scores[$index]/assignment.maximum) | percent}</span><br />
+						<span class="score">${$parent.student.scores[$index]}/${assignment.maximum}</span>
+					</td>
+				</tfoot>
+			</table>
+			<div class="panel-footer">
+				<button class="btn btn-default" click.delegate="save()">
+					<i class="fa fa-floppy-o"></i>
+					<span>Save</span>
+				</button>
+				<button class="btn btn-default" click.delegate="cancel()">
+					<span>Cancel</span>
+				</button>
+			</div>
+		</div>
+	</div>
+</template>
