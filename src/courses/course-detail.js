@@ -13,24 +13,26 @@ export class CourseDetail {
 		this.id = undefined;
 		this.course = {};
 		this._course = {};
+		this._assignment = {};
+		this.modal = false;
 	}
 
 	activate (params, config, router) {
 		this.id = parseInt(params.id, 10);
-	}
 
-	attached () {}
-		this.api.getCourse(id)
+		this.api.getCourse(this.id)
 			.then((course) => {
 				if (!course) {
-					console.error("no course", id, course);
+					console.error("no course", this.id, course);
 				} else {
 					this.course = deepCopy(course);
 					this._course = deepCopy(course);
 				}
 			});
+	}
 
-		this.ea.publish(new CourseSelected(id));
+	attached () {
+		this.ea.publish(new CourseSelected(this.id));
 	}
 
 	canDeactivate () {
@@ -50,9 +52,21 @@ export class CourseDetail {
 	addAssignment() {
 		console.log("addAssignment");
 		this._course.assignments.push({
-			name: "New Assignment",
-			maximum: 100
+			name: this._assignment.name,
+			maximum: this._assignment.maximum
 		});
+
+		this._assignment = {};
+
+		this.closeAssignmentModal();
+	}
+
+	closeAssignmentModal () {
+		this.modal = false;
+	}
+
+	openAssignmentModal () {
+		this.modal = true;
 	}
 
 	addStudent() {

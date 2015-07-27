@@ -44,6 +44,7 @@
   "jspm": {
     "dependencies": {
       "aurelia-bootstrapper": "github:aurelia/bootstrapper@^0.12.0",
+      "aurelia-bs-modal": "github:pwkad/aurelia-bs-modal@^0.2.1",
       "aurelia-event-aggregator": "github:aurelia/event-aggregator@^0.4.0",
       "bootstrap": "github:twbs/bootstrap@^3.3.4",
       "css": "github:systemjs/plugin-css@^0.1.9",

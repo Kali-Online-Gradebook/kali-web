@@ -1,11 +1,11 @@
 <template>
-	<template repeat.for="student of students">
-		<div class="row">
-			<div class="col-xs-3">
-				<a class="thumbnail" href="javascript:void()">
-					<img src="http://placehold.it/250x200">
+	<div class="scroll-wrapper">
+		<div class="row no-row-margin-left no-row-margin-right">
+			<div class="col-xs-3" repeat.for="student of students">
+				<a href="javascript:void()">
+					<img class="img-circle" src="http://placehold.it/150x150">
 				</a>
 			</div>
 		</div>
-	</template>
+	</div>
 </template>

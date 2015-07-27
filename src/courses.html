@@ -2,7 +2,13 @@
 	<require from="./courses/course-list"></require>
 
 	<div class="courses">
-		<course-list></course-list>
-		<router-view></router-view>
+		<div class="row no-row-margin-right">
+			<div class="col-xs-3 no-gutter-right">
+				<course-list></course-list>
+			</div>
+			<div class="col-xs-9 no-gutter-left no-gutter-right">
+				<router-view></router-view>
+			</div>
+		</div>
 	</div>
 </template>

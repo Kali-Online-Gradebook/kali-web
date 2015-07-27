@@ -2,7 +2,7 @@
 	<div class="sidebar-list">
 		<ul class="list-group">
 			<li repeat.for="course of courses" >
-				<a route-href="route: /; params.bind: { id: course.id }" class="list-group-item ${course.id === $parent.selectedId ? 'active' : ''}" click.delegate="$parent.select(course.id)">
+				<a route-href="route: course; params.bind: { id: course.id }" class="list-group-item ${course.id === $parent.selectedId ? 'active' : ''}" click.delegate="$parent.select(course.id)">
 					<h4 class="list-group-item-heading">${course.title}</h4>
 					<p class="list-group-item-text">${course.description}</p>
 				</a>

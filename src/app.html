@@ -12,6 +12,16 @@
 
 	<div class="page-host">
 		<loading-indicator loading.bind="router.isNavigating || api.isRequesting"></loading-indicator>
+		<div class="sidebar-wrapper ${hidden ? 'sidebar-hidden' : ''}">
+			<ul class="sidebar-nav fa-ul">
+				<li repeat.for="row of router.navigation" class="${row.isActive ? 'active' : ''}">
+					<a href.bind="row.href">
+						<i class="fa fa-li ${$parent.nav[row.title].icon}"></i>
+						<span>${row.title}</span>
+					</a>
+				</li>
+			</ul>
+		</div>
 		<router-view></router-view>
 	</div>
 </template>

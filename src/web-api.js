@@ -24,7 +24,7 @@ function generateStudents(number, assignments) {
 			lastname: 'Lastname',
 			scores: assignments.map(randScore)
 		});
-	};
+	}
 
 	return arr;
 }
@@ -105,7 +105,7 @@ export class WebAPI {
 				let courseDefault = {
 					title: '',
 					description: ''
-				}
+				};
 
 				let result = courses.filter((course) => {
 					return course.id === id;
