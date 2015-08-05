@@ -3,7 +3,7 @@ export function configure(aurelia) {
 		.standardConfiguration()
 		.developmentLogging()
 		// Install the plugin
-		.plugin('aurelia-bs-modal');
+		// .plugin('aurelia-bs-modal');
 
 	aurelia.start().then(a => a.setRoot());
 }

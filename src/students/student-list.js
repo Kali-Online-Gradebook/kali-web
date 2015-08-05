@@ -1,7 +1,25 @@
+import {StudentService} from '../services/student-service';
+
 export class StudentList {
-	constructor () {
-		this.students = [
-			1,2,3,4,5,6,7,8,9,10,11,12,13,14,15,16,17,18,19,20
-		];
+	static inject () { return [StudentService]; }
+
+	constructor (studentService) {
+		this.studentService = studentService;
+		this.students = [];
+	}
+
+	activate () {
+		this.studentService.getStudents()
+			.then((students) => {
+				console.log("students", students);
+				this.students = students;
+			})
+			.catch((error) => {
+				console.error('error', error);
+			});
+	}
+
+	attached () {
+
 	}
 }

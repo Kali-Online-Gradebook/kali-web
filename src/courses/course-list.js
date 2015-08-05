@@ -1,12 +1,12 @@
 import {EventAggregator} from 'aurelia-event-aggregator';
-import {WebAPI} from '../web-api';
+import {CourseService} from '../services/course-service';
 import {CourseChanged, CourseSelected} from '../messages';
 
 export class CourseList {
-	static inject = [WebAPI, EventAggregator];
+	static inject = [EventAggregator, CourseService];
 
-	constructor(api, ea) {
-		this.api = api;
+	constructor(ea, courseService) {
+		this.courseService = courseService;
 		this.ea = ea;
 		this.courses = [];
 	}
@@ -28,9 +28,10 @@ export class CourseList {
 	}
 
 	created() {
-		this.api.getCourseList().then(courses => {
-			this.courses = courses;
-		});
+		this.courseService.getCourses()
+			.then((courses) => {
+				this.courses = courses;
+			});
 	}
 
 	select(id) {

@@ -11,7 +11,7 @@
 	</nav>
 
 	<div class="page-host">
-		<loading-indicator loading.bind="router.isNavigating || api.isRequesting"></loading-indicator>
+		<!-- <loading-indicator loading.bind="router.isNavigating || api.isRequesting"></loading-indicator> -->
 		<div class="sidebar-wrapper ${hidden ? 'sidebar-hidden' : ''}">
 			<ul class="sidebar-nav fa-ul">
 				<li repeat.for="row of router.navigation" class="${row.isActive ? 'active' : ''}">

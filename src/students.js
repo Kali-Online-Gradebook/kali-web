@@ -1,6 +1,6 @@
 import {Router} from 'aurelia-router';
 
-export class Courses {
+export class Students {
 	configureRouter(config, router){
 		config.map([
 			{ route: ['', '/'], moduleId: 'students/student-list', name: '/' },

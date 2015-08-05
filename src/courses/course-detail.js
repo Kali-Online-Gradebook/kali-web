@@ -1,12 +1,12 @@
 import {EventAggregator} from 'aurelia-event-aggregator';
 import {Router} from 'aurelia-router';
-import {WebAPI} from '../web-api';
 import {CourseChanged, CourseSelected} from '../messages';
+import {CourseService} from '../services/course-service';
 
 export class CourseDetail {
-	static inject = [WebAPI, EventAggregator, Router];
-	constructor (api, ea, router) {
-		this.api = api;
+	static inject = [CourseService, EventAggregator, Router];
+	constructor (courseService, ea, router) {
+		this.courseService = courseService;
 		this.ea = ea;
 		this.router = router;
 
@@ -20,7 +20,7 @@ export class CourseDetail {
 	activate (params, config, router) {
 		this.id = parseInt(params.id, 10);
 
-		this.api.getCourse(this.id)
+		this.courseService.getCourse(this.id)
 			.then((course) => {
 				if (!course) {
 					console.error("no course", this.id, course);

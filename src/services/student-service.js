@@ -1,21 +1,21 @@
-import {HttpClient} from 'aurelia-http-client';
+import {ApiService} from './api-service';
 
-export class StudentService {
-	static inject () { return [HttpClient]; }
-
-	constructor (http, config) {
-		this.http = http.configure(x => {
-			x.withHeader('Content-Type', 'application/json');
-		});
+export class StudentService extends ApiService {
+	constructor (data, authorizationService, config, router) {
+		super(data, authorizationService, config, router);
 	}
 
 	getStudents (parameters) {
-		return this.http.get(this.endpoint + 'students')
+		return this.data.fetch('students', { method: 'GET' })
 			.then((response) => {
-				return response.content.data;
-			}).catch((error) => {
+				return response.json();
+			})
+			.then((content) => {
+				return content.data;
+			})
+			.catch((error) => {
 				console.error("Error in getStudents");
-				return error;
+				throw error;
 			});
 	}
 }

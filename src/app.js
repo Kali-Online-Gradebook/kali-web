@@ -18,7 +18,7 @@ export class App {
 	configureRouter(config, router){
 		config.title = 'Kali';
 		config.map([
-			{ route: '', moduleId: 'cover', title: 'Welcome'},
+			{ route: '', name: 'login', moduleId: 'login', title: 'Log In'},
 			{ route: ['courses'],  moduleId: 'courses', title: 'Courses', nav: true, icon: 'fa-book' },
 			{ route: ['students'],  moduleId: 'students', title: 'Students', nav: true, icon: 'fa-graduation-cap' }
 		]);
