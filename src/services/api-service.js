@@ -15,14 +15,14 @@ export class ApiService {
 			});
 			x.withInterceptor({
 				request: function (request) {
-					request.headers.set('Authorization', 'Bearer ' + authorizationService.getToken());
+					request.headers.set('Authorization', 'Bearer ' + authorizationService.token);
 					return request;
 				}
 			});
 			x.withInterceptor({
 				responseError: function (response) {
 					if (response.status === 401) {
-						return response.json()
+						response.json()
 							.then((content) => {
 								// TODO: Check some type of response code type here to know
 								// whether we should force reauthentication or not. (Like, if
@@ -31,6 +31,8 @@ export class ApiService {
 								router.navigate('');
 							});
 					}
+
+					return response;
 				}
 			});
 		});

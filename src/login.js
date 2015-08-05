@@ -24,14 +24,6 @@ export class Login {
 
 	}
 
-	activate () {
-		// This should be part of the router.
-		if (this.authorizationService.isLoggedIn()) 
-		{
-			this.router.navigate('courses');
-		}
-	}
-
 	authenticate () {
 		if (this.username === null || this.password === null) {
 			this.error = 'A username and password is required.';
@@ -46,7 +38,7 @@ export class Login {
 
 				// Store the JWT in our application - do something with localstorage here.
 				// TODO: Abstract this part into a new service and decode JWT.
-				this.authorizationService.setToken(token);
+				this.authorizationService.token = token;
 
 				// Redirect.
 				this.router.navigate('courses');

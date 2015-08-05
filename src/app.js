@@ -1,9 +1,8 @@
-import {WebAPI} from './web-api';
+import {Redirect} from 'aurelia-router';
+import {UserVerificationStep, AuthorizationStep} from './services/aaa/authorization-service';
 
 export class App {
-	static inject = [WebAPI];
 	constructor(api) {
-		this.api = api;
 		this.hidden = false;
 		this.nav = {
 			Courses: {
@@ -17,8 +16,10 @@ export class App {
 
 	configureRouter(config, router){
 		config.title = 'Kali';
+		config.addPipelineStep('authorize', UserVerificationStep);
+		config.addPipelineStep('authorize', AuthorizationStep);
 		config.map([
-			{ route: '', name: 'login', moduleId: 'login', title: 'Log In'},
+			{ route: '', name: 'login', moduleId: 'login', title: 'Log In', noLogin: true },
 			{ route: ['courses'],  moduleId: 'courses', title: 'Courses', nav: true, icon: 'fa-book' },
 			{ route: ['students'],  moduleId: 'students', title: 'Students', nav: true, icon: 'fa-graduation-cap' }
 		]);
