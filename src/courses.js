@@ -10,4 +10,8 @@ export class Courses {
 
 		this.router = router;
 	}
+
+	get hideView () {
+		return this.router.currentInstruction.config.name === '/';
+	}
 }

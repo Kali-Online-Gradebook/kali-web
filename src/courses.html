@@ -3,11 +3,10 @@
 
 	<div class="courses">
 		<div class="row no-row-margin-right">
-		${hideView}
-			<div class="${router.currentInstruction.config.name === '/' ? 'col-xs-12' : 'col-xs-3'} no-gutter-right">
+			<div class="${hideView ? 'col-xs-12' : 'col-xs-3'} no-gutter-right">
 				<course-list></course-list>
 			</div>
-			<div show.bind="router.currentInstruction.config.name !== '/'" class="col-xs-9 no-gutter-left no-gutter-right">
+			<div show.bind="!hideView" class="col-xs-9 no-gutter-left no-gutter-right">
 				<router-view></router-view>
 			</div>
 		</div>
