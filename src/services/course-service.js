@@ -33,4 +33,24 @@ export class CourseService extends ApiService {
 				throw error;
 			});
 	}
+
+	saveCourse (course) {
+		return this.data.fetch('courses', {
+			headers: {
+				'Content-Type': 'application/json'
+			},
+			method: 'POST',
+			body: JSON.stringify({ course: course })
+		})
+			.then((response) => {
+				return response.json();
+			})
+			.then((content) => {
+				return content.data;
+			})
+			.catch((error) => {
+				console.error("Error in getCourses");
+				throw error;
+			});
+	}
 }

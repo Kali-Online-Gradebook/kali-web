@@ -10,25 +10,34 @@ export class CourseDetail {
 		this.ea = ea;
 		this.router = router;
 
-		this.id = undefined;
-		this.course = {};
-		this._course = {};
-		this._assignment = {};
 		this.modal = false;
 	}
 
 	activate (params, config, router) {
-		this.id = parseInt(params.id, 10);
+		let id = parseInt(params.id, 10);
+		if (!isNaN(id)) {
+			this.id = id;
 
-		this.courseService.getCourse(this.id)
-			.then((course) => {
-				if (!course) {
-					console.error("no course", this.id, course);
-				} else {
-					this.course = deepCopy(course);
-					this._course = deepCopy(course);
-				}
-			});
+			this.courseService.getCourse(this.id)
+				.then((course) => {
+					if (!course) {
+						console.error("no course", this.id, course);
+					} else {
+						this.course = deepCopy(course);
+						this._course = deepCopy(course);
+					}
+				});
+
+			return;
+		}
+
+		this.id = undefined;
+		this.course = {};
+		this._course = {
+			title: '',
+			description: ''
+		};
+		this._assignment = {};
 	}
 
 	attached () {
@@ -73,10 +82,10 @@ export class CourseDetail {
 		console.log("addStudent");
 	}
 
-	save () {
+	addCourse () {
 		let id = this._course.id;
 
-		this.api.saveCourse(this._course)
+		this.courseService.saveCourse(this._course)
 			.then((course) => {
 				console.log("saved", id, course);
 				this.ea.publish(new CourseChanged(course));
