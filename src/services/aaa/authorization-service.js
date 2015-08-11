@@ -1,7 +1,17 @@
-// JWT service
 import {Redirect} from 'aurelia-router'; // Is this a bad separation of concerns?
+import {JWTUtility, JWA} from '../../components/au-jws';
 
 export class AuthorizationService {
+	static inject () {
+		return [JWTUtility];
+	}
+
+	constructor (jwtUtility) {
+		this.jwtUtility = jwtUtility.configure(j => {
+			j.addAlgorithm(JWA.RS256);
+		});
+	}
+
 	set token (token) {
 		window.localStorage.setItem('token', token);
 	}
@@ -10,10 +20,22 @@ export class AuthorizationService {
 		return window.localStorage.getItem('token');
 	}
 
-	getUser () {
-		if (this.token) return true; // TODO: Validate the key and send back the user object.
+	set publicKey (key) {
+		window.localStorage.setItem('publicKey', key);
+	}
 
-		return false;
+	get publicKey () {
+		return window.localStorage.getItem('publicKey');
+	}
+
+	getUser () {
+		return this.jwtUtility.verify(this.token, this.publicKey)
+			.then((payload) => {
+				return JSON.parse(payload).user;
+			})
+			.catch((err) => {
+				return false;
+			}); // TODO: Validate the key and send back the user object.
 	}
 
 	checkPermission (permission) {
@@ -32,9 +54,14 @@ export class UserVerificationStep {
 		console.log('UserVerificationStep Running');
 
 		if (!routingContext.nextInstructions.some(instruction => instruction.config.noLogin)) {
-			if (!this.authorizationService.getUser()) {
-				return next.cancel(new Redirect(''));
-			}
+
+			this.authorizationService.getUser()
+				.then(() => {
+					return next();
+				})
+				.catch(() => {
+					return next.cancel(new Redirect(''));
+				});
 		}
 
 		return next();

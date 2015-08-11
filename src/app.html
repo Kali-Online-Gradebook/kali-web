@@ -2,11 +2,26 @@
 	<require from="./loading-indicator"></require>
 
 	<nav class="navbar navbar-default navbar-inverse navbar-fixed-top" role="navigation">
-		<div class="navbar-header">
-			<a class="navbar-brand" href="#">
-				<i class="fa fa-user"></i>
-				<span>Kali</span>
-			</a>
+		<div class="container-fluid">
+			<div class="navbar-header">
+				<a class="navbar-brand" href="#">
+					<i class="fa fa-user"></i>
+					<span>Kali</span>
+				</a>
+			</div>
+
+			<div class="collapse navbar-collapse" id="bs-example-navbar-collapse-1">
+				<ul class="nav navbar-nav navbar-right">
+					<li class="dropdown">
+						<a class="dropdown-toggle" role="button" aria-haspopup="true" aria-expanded="false">User Display Name<span class="caret"></span></a>
+						<ul class="dropdown-menu">
+							<li><a href="#">Settings</a></li>
+							<li role="separator" class="divider"></li>
+							<li><a href="#">Log Out</a></li>
+						</ul>
+					</li>
+				</ul>
+			</div>
 		</div>
 	</nav>
 

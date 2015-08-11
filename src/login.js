@@ -32,13 +32,14 @@ export class Login {
 		this.error = ''; 
 
 		this.authenticationService.login(this.username, this.password)
-			.then((token) => {
+			.then((response) => {
 				this.username = '';
 				this.password = '';
 
 				// Store the JWT in our application - do something with localstorage here.
 				// TODO: Abstract this part into a new service and decode JWT.
-				this.authorizationService.token = token;
+				this.authorizationService.token = response.token;
+				this.authorizationService.publicKey = response.key;
 
 				// Redirect.
 				this.router.navigate('courses');

@@ -22,8 +22,9 @@ export class AuthenticationService {
 
 	login (uid, pwd) {
 		return this.http.post(this.endpoint + 'login', {
-				user: { username: uid, password: pwd }
-			}).then((response) => {
+			user: { username: uid, password: pwd }
+		})
+			.then((response) => {
 				return response.content.data;
 			});
 	}

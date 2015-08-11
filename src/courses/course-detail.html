@@ -83,12 +83,19 @@
 							<tr repeat.for="student of _course.students">
 								<th class="studentname">${student.lastname}, ${student.firstname}</th>
 								<td class="assignment" repeat.for="assignment of $parent._course.assignments">
-									<span class="percentage">${($parent.student.scores[$index]/assignment.maximum) | percent}</span><br />
-									<span class="score">${$parent.student.scores[$index]}/${assignment.maximum}</span>
+									<span class="percentage">
+										${($parent.student.scores[$index]/assignment.maximum) | percent}
+									</span>
+									<br />
+									<span class="score">
+										${$parent.student.scores[$index]}/${assignment.maximum}
+									</span>
 								</td>
 								<td></td>
 								<td>
-									<span class="h2">${$parent.average(student.scores) | percent}</span>
+									<span class="h2">
+										${$parent.average(student.scores) | percent}
+									</span>
 								</td>
 							</tr>
 						</tbody>
@@ -96,8 +103,13 @@
 							<tr>
 								<th>Class Average</th>
 								<td class="assignment" repeat.for="assignment of $parent._course.assignments">
-									<span class="percentage">${($parent.student.scores[$index]/assignment.maximum) | percent}</span><br />
-									<span class="score">${$parent.student.scores[$index]}/${assignment.maximum}</span>
+									<span class="percentage">
+										${($parent.student.scores[$index]/assignment.maximum) | percent}
+									</span>
+									<br />
+									<span class="score">
+										${$parent.student.scores[$index]}/${assignment.maximum}
+									</span>
 								</td>
 							</tr>
 						</tfoot>
